@@ -75,8 +75,31 @@
 
 .hero-right {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: 16px;
+}
+
+.language-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.language-select {
+  border: none;
+  font-size: 0.95rem;
+  color: #ffffff;
+  background: #f9b233;
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.language-select:focus {
+  outline: 2px solid #f29900;
+  outline-offset: 1px;
 }
 
 .hero-logo-link {
@@ -272,7 +295,7 @@
   }
 
   .hero-right {
-    text-align: left;
+    justify-content: flex-start;
   }
 
   .footer-top {

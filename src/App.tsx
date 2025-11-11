@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useState, type ChangeEvent, type ReactNode } from 'react'
 import agriLogoWhite from './assets/agri-logo-white.png'
 import agriLogo from './assets/agri-logo.png'
 import researchFundLogo from './assets/research-excellent-fund.png'
@@ -30,67 +30,138 @@ type Content = {
   }
 }
 
-const content: Content = {
-  hero: {
-    title: 'Semantic Engine',
-    subtitle: 'Agreements',
-    heading: 'Helping share your work',
-    description: 'Describe in custom terms how you want to make your work available',
-  },
-  intro: [
-    'Machine-readable data agreements reduce administrative overhead and increase the accessibility and reusability of research data across disciplines and borders.',
-    'By writing agreements in standardized, digital formats, researchers can ensure their terms are instantly understandable by both humans and machines.',
-  ],
-  ctas: [
-    {
-      id: 'groups',
-      title: 'For Data Spaces',
-      linkLabel: 'Run your own data negotiation agreement server',
-      linkHref: '#',
-      body: (
-        <>
-          For research groups, large-scale projects, or research Data Spaces, deploy our{' '}
-          <a
-            className="cta-highlight"
-            href="https://drt-test.canadacentral.cloudapp.azure.com/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Data Request Tracker (DRT)
-          </a>{' '}
-          to customize questions and manage ongoing communication with data requestors. The DRT enables you to
-          generate custom data licenses—both human- and machine-readable—based on the responses you collect.
-        </>
-      ),
+type Language = 'en' | 'fr'
+
+const contentByLanguage: Record<Language, Content> = {
+  en: {
+    hero: {
+      title: 'Semantic Engine',
+      subtitle: 'Agreements',
+      heading: 'Helping share your work',
+      description: 'Describe in custom terms how you want to make your work available',
     },
-  ],
-  about: [
-    { heading: 'About the Semantic Engine', copy: '' },
-  ],
-  footer: {
-    poweredBy: 'Powered by',
-    supportedBy: 'Supported by',
-    logos: [
+    intro: [
+      'Machine-readable data agreements reduce administrative overhead and increase the accessibility and reusability of research data across disciplines and borders.',
+      'By writing agreements in standardized, digital formats, researchers can ensure their terms are instantly understandable by both humans and machines.',
+    ],
+    ctas: [
       {
-        alt: 'Agri-Food Data Canada logo',
-        href: 'https://agrifooddatacanada.ca/',
-        image: agriLogo,
-      },
-      {
-        alt: 'Genome Canada logo',
-        href: 'https://www.genomecanada.ca/',
-        image: genomeCanadaLogo,
-      },
-      {
-        alt: 'Canada First Research Excellence Fund logo',
-        href: 'https://www.cfref-apogee.gc.ca/',
-        image: researchFundLogo,
+        id: 'groups',
+        title: 'For Data Spaces',
+        linkLabel: 'Run your own data negotiation agreement server',
+        linkHref: 'https://github.com/ClimateSmartAgCollab/DRT_Design_Document/blob/main/README.md',
+        body: (
+          <>
+            For research groups, large-scale projects, or research Data Spaces, deploy our{' '}
+            <a
+              className="cta-highlight"
+              href="https://drt-test.canadacentral.cloudapp.azure.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Data Request Tracker (DRT)
+            </a>{' '}
+            to customize questions and manage ongoing communication with data requestors. The DRT enables you to
+            generate custom data licenses—both human- and machine-readable—based on the responses you collect.
+          </>
+        ),
       },
     ],
+    about: [
+      { heading: 'About the Semantic Engine', copy: '' },
+    ],
+    footer: {
+      poweredBy: 'Powered by',
+      supportedBy: 'Supported by',
+      logos: [
+        {
+          alt: 'Agri-Food Data Canada logo',
+          href: 'https://agrifooddatacanada.ca/',
+          image: agriLogo,
+        },
+        {
+          alt: 'Genome Canada logo',
+          href: 'https://www.genomecanada.ca/',
+          image: genomeCanadaLogo,
+        },
+        {
+          alt: 'Canada First Research Excellence Fund logo',
+          href: 'https://www.cfref-apogee.gc.ca/',
+          image: researchFundLogo,
+        },
+      ],
+    },
+  },
+  fr: {
+    hero: {
+      title: 'Moteur sémantique',
+      subtitle: 'Ententes',
+      heading: 'Faciliter le partage de vos travaux',
+      description: 'Décrivez selon vos propres conditions comment vous souhaitez rendre vos travaux disponibles',
+    },
+    intro: [
+      'Les ententes sur les données lisibles par machine réduisent les tâches administratives et accroissent l’accessibilité et la réutilisation des données de recherche à travers les disciplines et les frontières.',
+      'En formulant des ententes dans des formats numériques normalisés, les chercheur·e·s garantissent que leurs conditions sont instantanément compréhensibles tant pour les humains que pour les systèmes.',
+    ],
+    ctas: [
+      {
+        id: 'groups',
+        title: 'Pour les espaces de données',
+        linkLabel: 'Exécutez votre propre serveur de négociation de données',
+        linkHref: 'https://github.com/ClimateSmartAgCollab/DRT_Design_Document',
+        body: (
+          <>
+            Pour les groupes de recherche, les projets à grande échelle ou les espaces de données, déployez notre{' '}
+            <a
+              className="cta-highlight"
+              href="https://drt-test.canadacentral.cloudapp.azure.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Data Request Tracker (DRT)
+            </a>{' '}
+            afin de personnaliser les questionnaires et de gérer la communication avec les demandeur·euse·s de données.
+            Le DRT vous permet de générer des licences de données sur mesure—lisibles par les humains et les machines—
+            à partir des réponses recueillies.
+          </>
+        ),
+      },
+    ],
+    about: [
+      { heading: 'À propos du moteur sémantique', copy: '' },
+    ],
+    footer: {
+      poweredBy: 'Propulsé par',
+      supportedBy: 'Soutenu par',
+      logos: [
+        {
+          alt: 'Agri-Food Data Canada logo',
+          href: 'https://agrifooddatacanada.ca/',
+          image: agriLogo,
+        },
+        {
+          alt: 'Genome Canada logo',
+          href: 'https://www.genomecanada.ca/',
+          image: genomeCanadaLogo,
+        },
+        {
+          alt: 'Canada First Research Excellence Fund logo',
+          href: 'https://www.cfref-apogee.gc.ca/',
+          image: researchFundLogo,
+        },
+      ],
+    },
   },
 }
 
 function App() {
+  const [language, setLanguage] = useState<Language>('en')
+  const content = contentByLanguage[language]
+
+  const handleLanguageChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setLanguage(event.target.value as Language)
+  }
+
   return (
     <main className="app-shell">
       <header className="hero-section">
@@ -106,6 +177,18 @@ function App() {
             </div>
           </div>
           <div className="hero-right" aria-label="Agri-Food Data Canada">
+            <div className="language-toggle">
+              <select
+                id="language-select"
+                className="language-select"
+                value={language}
+                onChange={handleLanguageChange}
+                aria-label={language === 'en' ? 'Select language' : 'Choisir la langue'}
+              >
+                <option value="en">EN</option>
+                <option value="fr">FR</option>
+              </select>
+            </div>
             <a className="hero-logo-link" href="https://agrifooddatacanada.ca/" target="_blank" rel="noreferrer">
               <img src={agriLogoWhite} alt="Agri-Food Data Canada logo" />
             </a>
@@ -124,7 +207,7 @@ function App() {
           {content.ctas.map((cta) => (
             <article key={cta.id} className={`cta-card cta-${cta.id}`}>
               <h2>{cta.title}</h2>
-              <a className="cta-link" href={cta.linkHref}>
+              <a className="cta-link" href={cta.linkHref} target="_blank" rel="noreferrer">
                 {cta.linkLabel}
               </a>
               <p>{cta.body}</p>
