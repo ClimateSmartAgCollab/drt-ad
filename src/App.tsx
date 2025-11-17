@@ -1,79 +1,83 @@
-import { useEffect, useState, type ChangeEvent, type ReactNode } from 'react'
-import agriLogoWhite from './assets/agri-logo-white.png'
-import agriLogo from './assets/agri-logo.png'
-import researchFundLogo from './assets/research-excellent-fund.png'
-import genomeCanadaLogo from './assets/R.jpg'
-import questionnaireSample from './assets/Questionnaire_Sample.png'
-import engSampleParent from './assets/Eng_sample_Q1.png'
-import engSampleChild from './assets/Eng_sample_Q1_child.png'
-import fraSampleParent from './assets/Fra_sample_Q1.png'
-import fraSampleChild from './assets/Fra_sample_Q1_child.png'
-import './App.css'
+import { useEffect, useState, type ChangeEvent, type ReactNode } from "react";
+import agriLogoWhite from "./assets/agri-logo-white.png";
+import agriLogo from "./assets/agri-logo.png";
+import drtLogo from "./assets/drt-logo.png";
+import researchFundLogo from "./assets/research-excellent-fund.png";
+import genomeCanadaLogo from "./assets/R.jpg";
+import questionnaireSample from "./assets/Questionnaire_Sample.png";
+import engSampleParent from "./assets/Eng_sample_Q1.png";
+import engSampleChild from "./assets/Eng_sample_Q1_child.png";
+import fraSampleParent from "./assets/Fra_sample_Q1.png";
+import fraSampleChild from "./assets/Fra_sample_Q1_child.png";
+import "./App.css";
 
 type CTA = {
-  id: string
-  title: string
-  linkLabel: string
-  linkHref: string
-  body: ReactNode
-}
+  id: string;
+  title: string;
+  linkLabel: string;
+  linkHref: string;
+  body: ReactNode;
+};
 
 type ScreenshotDetails = {
-  image: string
-  alt: string
-  caption: string
-}
+  image: string;
+  alt: string;
+  caption: string;
+};
 
 type Screenshot = ScreenshotDetails & {
-  relatedHeading?: string
-  related?: ScreenshotDetails[]
-}
+  relatedHeading?: string;
+  related?: ScreenshotDetails[];
+};
 
 type Content = {
   hero: {
-    title: string
-    subtitle: string
-    heading: string
-    description: string
-  }
-  intro: string[]
-  ctas: CTA[]
-  about: { heading: string; copy: string }[]
+    title: string;
+    subtitle: string;
+    heading: string;
+    description: string;
+  };
+  intro: string[];
+  ctas: CTA[];
+  about: { heading: string; copy: string }[];
   questionnaire: {
-    heading: string
-    description: string
-    images: Screenshot[]
-  }
+    heading: string;
+    description: string;
+    images: Screenshot[];
+  };
   footer: {
-    poweredBy: string
-    supportedBy: string
-    logos: { alt: string; href: string; image: string }[]
-  }
-}
+    poweredBy: string;
+    supportedBy: string;
+    logos: { alt: string; href: string; image: string }[];
+  };
+};
 
-type Language = 'en' | 'fr'
+type Language = "en" | "fr";
 
 const contentByLanguage: Record<Language, Content> = {
   en: {
     hero: {
-      title: 'Semantic Engine',
-      subtitle: 'Agreements',
-      heading: 'Helping share your work',
-      description: 'Describe in custom terms how you want to make your work available',
+      title: "Semantic Engine",
+      subtitle: "Agreements",
+      heading: "Helping share your work",
+      description:
+        "Describe in custom terms how you want to make your work available",
     },
     intro: [
-      'Machine-readable data agreements reduce administrative overhead and increase the accessibility and reusability of research data across disciplines and borders.',
-      'By writing agreements in standardized, digital formats, researchers can ensure their terms are instantly understandable by both humans and machines.',
+      "Machine-readable data agreements reduce administrative overhead and increase the accessibility and reusability of research data across disciplines and borders.",
+      "By writing agreements in standardized, digital formats, researchers can ensure their terms are instantly understandable by both humans and machines.",
     ],
     ctas: [
       {
-        id: 'groups',
-        title: 'For Data Spaces',
-        linkLabel: 'Run your own data negotiation agreement server',
-        linkHref: 'https://github.com/ClimateSmartAgCollab/DRT_Design_Document/blob/main/README.md',
+        id: "groups",
+        title: "For Data Spaces",
+        linkLabel: "Run your own data negotiation agreement server",
+        linkHref:
+          "https://github.com/ClimateSmartAgCollab/DRT_Design_Document/blob/main/README.md",
         body: (
           <>
-            For research groups, large-scale projects, or research Data Spaces, deploy our{' '}
+            For research groups, large-scale projects, or research Data Spaces,
+            deploy our{" "}
             <a
               className="cta-highlight"
               href="https://drt-test.canadacentral.cloudapp.azure.com/"
@@ -81,58 +85,61 @@ const contentByLanguage: Record<Language, Content> = {
               rel="noreferrer"
             >
               Data Request Tracker (DRT)
-            </a>{' '}
-            to customize questions and manage ongoing communication with data requestors. The DRT enables you to
-            generate custom data licenses—both human- and machine-readable—based on the responses you collect.
+            </a>{" "}
+            to customize questions and manage ongoing communication with data
+            requestors. The DRT enables you to generate custom data
+            licenses—both human- and machine-readable—based on the responses you
+            collect.
           </>
         ),
       },
     ],
-    about: [
-      { heading: 'About the Semantic Engine', copy: '' },
-    ],
+    about: [{ heading: "About the Semantic Engine", copy: "" }],
     questionnaire: {
-      heading: 'See the Questionnaire Experience',
+      heading: "See the Questionnaire Experience",
       description:
-        'Explore the layout and styling of the dynamic questionnaires generated by the Data Request Tracker. The previews below show a sample form and one of its nested collaborator sections that requestors complete when negotiating data access.',
+        "Explore the layout and styling of the dynamic questionnaires generated by the Data Request Tracker. The previews below show a sample form and one of its nested collaborator sections that requestors complete when negotiating data access.",
       images: [
         {
           image: questionnaireSample,
-          alt: 'Screenshot of a questionnaire page within the Data Request Tracker application',
-          caption: 'Sample questionnaire page outlining demographics and research information.',
+          alt: "Screenshot of a questionnaire page within the Data Request Tracker application",
+          caption:
+            "Sample questionnaire page outlining demographics and research information.",
         },
         {
           image: engSampleParent,
-          alt: 'Screenshot of the English questionnaire schema overview page',
-          caption: 'Prototype OCA DRT questionnaire page with multiple sections and question types.',
-          relatedHeading: 'Section 3 : “Add collaborator” modal',
+          alt: "Screenshot of the English questionnaire schema overview page",
+          caption:
+            "Prototype OCA DRT questionnaire page with multiple sections and question types.",
+          relatedHeading: "Section 3 : “Add collaborator” modal",
           related: [
             {
               image: engSampleChild,
-              alt: 'Screenshot of the collaborator section within the English questionnaire',
-              caption: 'Section 3 collaborator workflow showing the “Add collaborator” modal.',
+              alt: "Screenshot of the collaborator section within the English questionnaire",
+              caption:
+                "Section 3 collaborator workflow showing the “Add collaborator” modal.",
             },
           ],
         },
       ],
     },
     footer: {
-      poweredBy: 'Powered by',
-      supportedBy: 'Supported by',
+      poweredBy: "Powered by",
+      supportedBy: "Supported by",
       logos: [
         {
-          alt: 'Agri-Food Data Canada logo',
-          href: 'https://agrifooddatacanada.ca/',
+          alt: "Agri-Food Data Canada logo",
+          href: "https://agrifooddatacanada.ca/",
           image: agriLogo,
         },
         {
-          alt: 'Genome Canada logo',
-          href: 'https://www.genomecanada.ca/',
+          alt: "Genome Canada logo",
+          href: "https://www.genomecanada.ca/",
           image: genomeCanadaLogo,
         },
         {
-          alt: 'Canada First Research Excellence Fund logo',
-          href: 'https://www.cfref-apogee.gc.ca/',
+          alt: "Canada First Research Excellence Fund logo",
+          href: "https://www.cfref-apogee.gc.ca/",
           image: researchFundLogo,
         },
       ],
@@ -140,24 +147,26 @@ const contentByLanguage: Record<Language, Content> = {
   },
   fr: {
     hero: {
-      title: 'Moteur sémantique',
-      subtitle: 'Ententes',
-      heading: 'Faciliter le partage de vos travaux',
-      description: 'Décrivez selon vos propres conditions comment vous souhaitez rendre vos travaux disponibles',
+      title: "Moteur sémantique",
+      subtitle: "Ententes",
+      heading: "Faciliter le partage de vos travaux",
+      description:
+        "Décrivez selon vos propres conditions comment vous souhaitez rendre vos travaux disponibles",
     },
     intro: [
-      'Les ententes sur les données lisibles par machine réduisent les tâches administratives et accroissent l’accessibilité et la réutilisation des données de recherche à travers les disciplines et les frontières.',
-      'En formulant des ententes dans des formats numériques normalisés, les chercheur·e·s garantissent que leurs conditions sont instantanément compréhensibles tant pour les humains que pour les systèmes.',
+      "Les ententes sur les données lisibles par machine réduisent les tâches administratives et accroissent l’accessibilité et la réutilisation des données de recherche à travers les disciplines et les frontières.",
+      "En formulant des ententes dans des formats numériques normalisés, les chercheur·e·s garantissent que leurs conditions sont instantanément compréhensibles tant pour les humains que pour les systèmes.",
     ],
     ctas: [
       {
-        id: 'groups',
-        title: 'Pour les espaces de données',
-        linkLabel: 'Exécutez votre propre serveur de négociation de données',
-        linkHref: 'https://github.com/ClimateSmartAgCollab/DRT_Design_Document',
+        id: "groups",
+        title: "Pour les espaces de données",
+        linkLabel: "Exécutez votre propre serveur de négociation de données",
+        linkHref: "https://github.com/ClimateSmartAgCollab/DRT_Design_Document",
         body: (
           <>
-            Pour les groupes de recherche, les projets à grande échelle ou les espaces de données, déployez notre{' '}
+            Pour les groupes de recherche, les projets à grande échelle ou les
+            espaces de données, déployez notre{" "}
             <a
               className="cta-highlight"
               href="https://drt-test.canadacentral.cloudapp.azure.com/"
@@ -165,103 +174,107 @@ const contentByLanguage: Record<Language, Content> = {
               rel="noreferrer"
             >
               Data Request Tracker (DRT)
-            </a>{' '}
-            afin de personnaliser les questionnaires et de gérer la communication avec les demandeur·euse·s de données.
-            Le DRT vous permet de générer des licences de données sur mesure—lisibles par les humains et les machines—
-            à partir des réponses recueillies.
+            </a>{" "}
+            afin de personnaliser les questionnaires et de gérer la
+            communication avec les demandeur·euse·s de données. Le DRT vous
+            permet de générer des licences de données sur mesure—lisibles par
+            les humains et les machines— à partir des réponses recueillies.
           </>
         ),
       },
     ],
-    about: [
-      { heading: 'À propos du moteur sémantique', copy: '' },
-    ],
+    about: [{ heading: "À propos du moteur sémantique", copy: "" }],
     questionnaire: {
-      heading: 'Aperçu du questionnaire',
+      heading: "Aperçu du questionnaire",
       description:
-        'Découvrez la présentation et le style des questionnaires dynamiques générés par le Data Request Tracker. Les aperçus ci-dessous illustrent un formulaire type et sa section imbriquée pour ajouter des collaborateurs lors d’une négociation d’accès aux données.',
+        "Découvrez la présentation et le style des questionnaires dynamiques générés par le Data Request Tracker. Les aperçus ci-dessous illustrent un formulaire type et sa section imbriquée pour ajouter des collaborateurs lors d’une négociation d’accès aux données.",
       images: [
         {
           image: questionnaireSample,
-          alt: 'Capture d’écran d’une page de questionnaire dans l’application Data Request Tracker',
-          caption: 'Exemple de questionnaire présentant les sections démographiques et intérêts.',
+          alt: "Capture d’écran d’une page de questionnaire dans l’application Data Request Tracker",
+          caption:
+            "Exemple de questionnaire présentant les sections démographiques et intérêts.",
         },
         {
           image: fraSampleParent,
-          alt: 'Capture d’écran de la page d’aperçu du questionnaire en français',
-          caption: 'Prototype de questionnaire OCA DRT en français montrant les différentes sections et questions.',
-          relatedHeading: 'Section 3 : fenêtre « Ajouter un collaborateur »',
+          alt: "Capture d’écran de la page d’aperçu du questionnaire en français",
+          caption:
+            "Prototype de questionnaire OCA DRT en français montrant les différentes sections et questions.",
+          relatedHeading: "Section 3 : fenêtre « Ajouter un collaborateur »",
           related: [
             {
               image: fraSampleChild,
-              alt: 'Capture d’écran de la section collaborateur dans le questionnaire français',
-              caption: 'Section collaborateur permettant d’ajouter un membre via la fenêtre “Ajouter un collaborateur”.',
+              alt: "Capture d’écran de la section collaborateur dans le questionnaire français",
+              caption:
+                "Section collaborateur permettant d’ajouter un membre via la fenêtre “Ajouter un collaborateur”.",
             },
           ],
         },
       ],
     },
     footer: {
-      poweredBy: 'Propulsé par',
-      supportedBy: 'Soutenu par',
+      poweredBy: "Propulsé par",
+      supportedBy: "Soutenu par",
       logos: [
         {
-          alt: 'Agri-Food Data Canada logo',
-          href: 'https://agrifooddatacanada.ca/',
+          alt: "Agri-Food Data Canada logo",
+          href: "https://agrifooddatacanada.ca/",
           image: agriLogo,
         },
         {
-          alt: 'Genome Canada logo',
-          href: 'https://www.genomecanada.ca/',
+          alt: "Genome Canada logo",
+          href: "https://www.genomecanada.ca/",
           image: genomeCanadaLogo,
         },
         {
-          alt: 'Canada First Research Excellence Fund logo',
-          href: 'https://www.cfref-apogee.gc.ca/',
+          alt: "Canada First Research Excellence Fund logo",
+          href: "https://www.cfref-apogee.gc.ca/",
           image: researchFundLogo,
         },
       ],
     },
   },
-}
+};
 
 function App() {
-  const [language, setLanguage] = useState<Language>('en')
-  const [activeScreenshot, setActiveScreenshot] = useState<ScreenshotDetails | null>(null)
-  const content = contentByLanguage[language]
-  const enlargeLabelSuffix = language === 'fr' ? '(agrandir l’aperçu)' : '(enlarge preview)'
+  const [language, setLanguage] = useState<Language>("en");
+  const [activeScreenshot, setActiveScreenshot] =
+    useState<ScreenshotDetails | null>(null);
+  const content = contentByLanguage[language];
+  const enlargeLabelSuffix =
+    language === "fr" ? "(agrandir l’aperçu)" : "(enlarge preview)";
 
   const handleLanguageChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setLanguage(event.target.value as Language)
-  }
+    setLanguage(event.target.value as Language);
+  };
 
   useEffect(() => {
     if (!activeScreenshot) {
-      return
+      return;
     }
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setActiveScreenshot(null)
+      if (event.key === "Escape") {
+        setActiveScreenshot(null);
       }
-    }
+    };
 
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    window.addEventListener('keydown', handleKeyDown)
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
-      window.removeEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = previousOverflow
-    }
-  }, [activeScreenshot])
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [activeScreenshot]);
 
   const openScreenshot = (screenshot: ScreenshotDetails) => {
-    setActiveScreenshot(screenshot)
-  }
+    setActiveScreenshot(screenshot);
+  };
 
   const closeScreenshot = () => {
-    setActiveScreenshot(null)
-  }
+    setActiveScreenshot(null);
+  };
 
   return (
     <main className="app-shell">
@@ -269,8 +282,11 @@ function App() {
         <div className="hero-container">
           <div className="hero-left">
             <div className="hero-heading">
-              <span className="hero-title">{content.hero.title}</span>
-              <span className="hero-subtitle">{content.hero.subtitle}</span>
+              <img src={drtLogo} alt="DRT logo" className="drt-logo" />
+              <div className="hero-heading-text">
+                <span className="hero-title">{content.hero.title}</span>
+                <span className="hero-subtitle">{content.hero.subtitle}</span>
+              </div>
             </div>
             <div className="hero-text">
               <h1>{content.hero.heading}</h1>
@@ -284,13 +300,20 @@ function App() {
                 className="language-select"
                 value={language}
                 onChange={handleLanguageChange}
-                aria-label={language === 'en' ? 'Select language' : 'Choisir la langue'}
+                aria-label={
+                  language === "en" ? "Select language" : "Choisir la langue"
+                }
               >
                 <option value="en">EN</option>
                 <option value="fr">FR</option>
               </select>
             </div>
-            <a className="hero-logo-link" href="https://agrifooddatacanada.ca/" target="_blank" rel="noreferrer">
+            <a
+              className="hero-logo-link"
+              href="https://agrifooddatacanada.ca/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <img src={agriLogoWhite} alt="Agri-Food Data Canada logo" />
             </a>
           </div>
@@ -308,7 +331,12 @@ function App() {
           {content.ctas.map((cta) => (
             <article key={cta.id} className={`cta-card cta-${cta.id}`}>
               <h2>{cta.title}</h2>
-              <a className="cta-link" href={cta.linkHref} target="_blank" rel="noreferrer">
+              <a
+                className="cta-link"
+                href={cta.linkHref}
+                target="_blank"
+                rel="noreferrer"
+              >
                 {cta.linkLabel}
               </a>
               <p>{cta.body}</p>
@@ -335,19 +363,31 @@ function App() {
                 <figcaption>{image.caption}</figcaption>
                 {image.related && (
                   <div className="questionnaire-related">
-                    {image.relatedHeading && <span className="questionnaire-related-heading">{image.relatedHeading}</span>}
+                    {image.relatedHeading && (
+                      <span className="questionnaire-related-heading">
+                        {image.relatedHeading}
+                      </span>
+                    )}
                     <div className="questionnaire-related-list">
                       {image.related.map((relatedImage) => (
-                        <div key={relatedImage.caption} className="questionnaire-related-item">
+                        <div
+                          key={relatedImage.caption}
+                          className="questionnaire-related-item"
+                        >
                           <button
                             type="button"
                             className="questionnaire-thumb questionnaire-thumb-related"
                             onClick={() => openScreenshot(relatedImage)}
                             aria-label={`${relatedImage.caption} ${enlargeLabelSuffix}`}
                           >
-                            <img src={relatedImage.image} alt={relatedImage.alt} />
+                            <img
+                              src={relatedImage.image}
+                              alt={relatedImage.alt}
+                            />
                           </button>
-                          <span className="questionnaire-related-caption">{relatedImage.caption}</span>
+                          <span className="questionnaire-related-caption">
+                            {relatedImage.caption}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -372,14 +412,28 @@ function App() {
         <div className="footer-grid">
           <div className="footer-column">
             <span className="footer-label">{content.footer.poweredBy}</span>
-            <a href="https://agrifooddatacanada.ca/" target="_blank" rel="noreferrer" className="footer-logo-link">
+            <a
+              href="https://agrifooddatacanada.ca/"
+              target="_blank"
+              rel="noreferrer"
+              className="footer-logo-link"
+            >
               <img src={agriLogo} alt="Agri-Food Data Canada" />
             </a>
             <span className="footer-label">{content.footer.supportedBy}</span>
-            <img src={researchFundLogo} alt="Canada First Research Excellence Fund" className="footer-inline-logo" />
+            <img
+              src={researchFundLogo}
+              alt="Canada First Research Excellence Fund"
+              className="footer-inline-logo"
+            />
           </div>
 
-          <a href="https://www.genomecanada.ca/" target="_blank" rel="noreferrer" className="footer-logo-link">
+          <a
+            href="https://www.genomecanada.ca/"
+            target="_blank"
+            rel="noreferrer"
+            className="footer-logo-link"
+          >
             <img src={genomeCanadaLogo} alt="Genome Canada" />
           </a>
         </div>
@@ -394,8 +448,16 @@ function App() {
           aria-describedby="lightbox-caption"
           onClick={closeScreenshot}
         >
-          <div className="lightbox-content" onClick={(event) => event.stopPropagation()}>
-            <button type="button" className="lightbox-close" onClick={closeScreenshot} aria-label="Close image preview">
+          <div
+            className="lightbox-content"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="lightbox-close"
+              onClick={closeScreenshot}
+              aria-label="Close image preview"
+            >
               Close
             </button>
             <img src={activeScreenshot.image} alt={activeScreenshot.alt} />
@@ -406,7 +468,7 @@ function App() {
         </div>
       )}
     </main>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -32,10 +32,23 @@
 
 .hero-heading {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
   font-weight: 600;
   letter-spacing: 0.04em;
+}
+
+.hero-heading-text {
+  display: flex;
+  flex-direction: column;
   gap: 4px;
+}
+
+.drt-logo {
+  width: clamp(80px, 10vw, 140px);
+  height: auto;
+  display: block;
 }
 
 .hero-title {
@@ -76,12 +89,13 @@
 .hero-right {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 16px;
 }
 
 .language-toggle {
+  margin-top: 12px;
   display: flex;
   align-items: center;
 }
@@ -451,6 +465,12 @@
     gap: 32px;
   }
 
+  .hero-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
   .hero-text {
     padding-left: 0;
     max-width: 100%;
@@ -486,6 +506,10 @@
 
   .hero-logo-link img {
     width: clamp(160px, 60vw, 220px);
+  }
+
+  .drt-logo {
+    width: clamp(70px, 28vw, 120px);
   }
 
   .content-wrapper,
