@@ -117,13 +117,13 @@ const contentByLanguage: Record<Language, Content> = {
           alt: "Screenshot of the English questionnaire schema overview page",
           caption:
             "Prototype OCA DRT questionnaire page with multiple sections and question types.",
-          relatedHeading: "Section 3 : “Add collaborator” modal",
+          relatedHeading: "Section 3 : “Add collaborator”",
           related: [
             {
               image: engSampleChild,
               alt: "Screenshot of the collaborator section within the English questionnaire",
               caption:
-                "Section 3 collaborator workflow showing the “Add collaborator” modal.",
+                "Section 3 collaborator workflow showing the “Add collaborator”.",
             },
           ],
         },
@@ -225,13 +225,13 @@ const contentByLanguage: Record<Language, Content> = {
           alt: "Capture d’écran de la page d’aperçu du questionnaire en français",
           caption:
             "Prototype de questionnaire OCA DRT en français montrant les différentes sections et questions.",
-          relatedHeading: "Section 3 : fenêtre « Ajouter un collaborateur »",
+          relatedHeading: "Section 3 : « Ajouter un collaborateur »",
           related: [
             {
               image: fraSampleChild,
               alt: "Capture d’écran de la section collaborateur dans le questionnaire français",
               caption:
-                "Section collaborateur permettant d’ajouter un membre via la fenêtre “Ajouter un collaborateur”.",
+                "Section collaborateur permettant d’ajouter un membre via la “Ajouter un collaborateur”.",
             },
           ],
         },
