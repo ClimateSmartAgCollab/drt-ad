@@ -1,6 +1,4 @@
 import { useEffect, useState, type ChangeEvent, type ReactNode } from "react";
-import agriLogoWhite from "./assets/agri-logo-white.png";
-import agriLogo from "./assets/agri-logo.png";
 import drtLogo from "./assets/drt-logo.png";
 import researchFundLogo from "./assets/research-excellent-fund.png";
 import genomeCanadaLogo from "./assets/R.jpg";
@@ -40,6 +38,7 @@ type Content = {
   intro: string[];
   ctas: CTA[];
   about: { heading: string; copy: string }[];
+  partners: { name: string; href?: string; image?: string }[];
   questionnaire: {
     heading: string;
     description: string;
@@ -52,7 +51,6 @@ type Content = {
     tryButtonHref: string;
   };
   footer: {
-    poweredBy: string;
     supportedBy: string;
     logos: { alt: string; href: string; image: string }[];
   };
@@ -100,7 +98,13 @@ const contentByLanguage: Record<Language, Content> = {
         ),
       },
     ],
-    about: [{ heading: "About the Semantic Engine", copy: "" }],
+    about: [{ heading: "Our Partners", copy: "" }],
+    partners: [
+      { name: "Agri-Food Data Canada", href: "https://agrifooddatacanada.ca/" },
+      { name: "Université Laval", href: "https://www.ulaval.ca/" },
+      { name: "Simon Fraser University", href: "https://www.sfu.ca/" },
+      { name: "CS-DCC", href: "https://cs-dcc.ca/", image: "" },
+    ],
     questionnaire: {
       heading: "See the Questionnaire Experience",
       description:
@@ -137,14 +141,8 @@ const contentByLanguage: Record<Language, Content> = {
       tryButtonHref: "https://drt-test.canadacentral.cloudapp.azure.com/preview-questionnaire",
     },
     footer: {
-      poweredBy: "Powered by",
       supportedBy: "Supported by",
       logos: [
-        {
-          alt: "Agri-Food Data Canada logo",
-          href: "https://agrifooddatacanada.ca/",
-          image: agriLogo,
-        },
         {
           alt: "Genome Canada logo",
           href: "https://www.genomecanada.ca/",
@@ -203,11 +201,12 @@ const contentByLanguage: Record<Language, Content> = {
       tryButton: "Essayer l'aperçu du questionnaire",
       tryButtonHref: "https://drt-test.canadacentral.cloudapp.azure.com/preview-questionnaire",
     },
-    about: [
-      { 
-        heading: "À propos du moteur sémantique", 
-        copy: "" 
-      },
+    about: [{ heading: "Nos partenaires", copy: "" }],
+    partners: [
+      { name: "Agri-Food Data Canada", href: "https://agrifooddatacanada.ca/" },
+      { name: "Université Laval", href: "https://www.ulaval.ca/" },
+      { name: "Simon Fraser University", href: "https://www.sfu.ca/" },
+      { name: "CS-DCC", href: "https://cs-dcc.ca/", image: "" },
     ],
     questionnaire: {
       heading: "Aperçu du questionnaire",
@@ -238,14 +237,8 @@ const contentByLanguage: Record<Language, Content> = {
       ],
     },
     footer: {
-      poweredBy: "Propulsé par",
       supportedBy: "Soutenu par",
       logos: [
-        {
-          alt: "Agri-Food Data Canada logo",
-          href: "https://agrifooddatacanada.ca/",
-          image: agriLogo,
-        },
         {
           alt: "Genome Canada logo",
           href: "https://www.genomecanada.ca/",
@@ -318,7 +311,7 @@ function App() {
               <p>{content.hero.description}</p>
             </div>
           </div>
-          <div className="hero-right" aria-label="Agri-Food Data Canada">
+          <div className="hero-right" aria-label="Language and options">
             <div className="language-toggle">
               <select
                 id="language-select"
@@ -333,14 +326,6 @@ function App() {
                 <option value="fr">FR</option>
               </select>
             </div>
-            <a
-              className="hero-logo-link"
-              href="https://agrifooddatacanada.ca/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img src={agriLogoWhite} alt="Agri-Food Data Canada logo" />
-            </a>
           </div>
         </div>
       </header>
@@ -440,9 +425,52 @@ function App() {
 
         <section className="about">
           {content.about.map((item) => (
-            <div key={item.heading}>
+            <div key={item.heading} className="about-block">
               <h3>{item.heading}</h3>
               {item.copy && <p>{item.copy}</p>}
+              <div className="partners-grid" aria-label="Partner logos">
+                {content.partners.map((partner) => (
+                  <div key={partner.name} className="partner-logo-slot">
+                    {partner.image ? (
+                      partner.href ? (
+                        <a
+                          href={partner.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="partner-logo-link"
+                        >
+                          <img
+                            src={partner.image}
+                            alt={partner.name}
+                            className="partner-logo-img"
+                          />
+                        </a>
+                      ) : (
+                        <img
+                          src={partner.image}
+                          alt={partner.name}
+                          className="partner-logo-img"
+                        />
+                      )
+                    ) : (
+                      partner.href ? (
+                        <a
+                          href={partner.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="partner-logo-placeholder"
+                        >
+                          {partner.name}
+                        </a>
+                      ) : (
+                        <span className="partner-logo-placeholder">
+                          {partner.name}
+                        </span>
+                      )
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </section>
@@ -451,31 +479,23 @@ function App() {
       <footer className="footer-section">
         <div className="footer-grid">
           <div className="footer-column">
-            <span className="footer-label">{content.footer.poweredBy}</span>
-            <a
-              href="https://agrifooddatacanada.ca/"
-              target="_blank"
-              rel="noreferrer"
-              className="footer-logo-link"
-            >
-              <img src={agriLogo} alt="Agri-Food Data Canada" />
-            </a>
             <span className="footer-label">{content.footer.supportedBy}</span>
-            <img
-              src={researchFundLogo}
-              alt="Canada First Research Excellence Fund"
-              className="footer-inline-logo"
-            />
+            <div className="footer-logos-row">
+              <img
+                src={researchFundLogo}
+                alt="Canada First Research Excellence Fund"
+                className="footer-inline-logo"
+              />
+              <a
+                href="https://www.genomecanada.ca/"
+                target="_blank"
+                rel="noreferrer"
+                className="footer-logo-link"
+              >
+                <img src={genomeCanadaLogo} alt="Genome Canada" />
+              </a>
+            </div>
           </div>
-
-          <a
-            href="https://www.genomecanada.ca/"
-            target="_blank"
-            rel="noreferrer"
-            className="footer-logo-link"
-          >
-            <img src={genomeCanadaLogo} alt="Genome Canada" />
-          </a>
         </div>
       </footer>
 
