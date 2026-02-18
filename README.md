@@ -1,6 +1,6 @@
 # DRT Agreements Landing Page
 
-Marketing page for the Data Request Tracker (DRT) semantic agreement tooling. Built with React, TypeScript, and Vite.
+Main page for the Data Request Tracker (DRT) semantic agreement tooling. Built with React, TypeScript, and Vite.
 
 ## Setup
 
