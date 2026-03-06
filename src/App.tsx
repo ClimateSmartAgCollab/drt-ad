@@ -259,7 +259,15 @@ function App() {
         <div className="hero-container">
           <div className="hero-left">
             <div className="hero-heading">
-              <img src={drtLogo} alt="DRT logo" className="drt-logo" />
+              <a
+                href="https://agreements.semanticengine.org/"
+                target="_blank"
+                rel="noreferrer"
+                className="DRT-logo-link"
+              >
+                <img src={drtLogo} alt="DRT logo" className="drt-logo" />
+              </a>
+
               <div className="hero-heading-text">
                 <span className="hero-title">{content.hero.title}</span>
                 <span className="hero-subtitle">{content.hero.subtitle}</span>
