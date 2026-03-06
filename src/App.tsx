@@ -37,6 +37,16 @@ type Content = {
   };
   intro: string[];
   ctas: CTA[];
+  landingSections: {
+    id: string;
+    title: string;
+    body: ReactNode;
+  }[];
+  quickLinks: {
+    id: string;
+    label: string;
+    href: string;
+  }[];
   about: { heading: string; copy: string }[];
   partners: { name: string; href?: string; image?: string }[];
   questionnaire: {
@@ -57,6 +67,10 @@ type Content = {
 };
 
 type Language = "en" | "fr";
+
+const QUESTIONNAIRE_PREVIEW_URL =
+  "https://drt-test.canadacentral.cloudapp.azure.com/preview-questionnaire";
+const DRT_DEMO_EMAIL = "adc@uoguelph.ca";
 
 const contentByLanguage: Record<Language, Content> = {
   en: {
@@ -96,6 +110,80 @@ const contentByLanguage: Record<Language, Content> = {
             collect.
           </>
         ),
+      },
+    ],
+    landingSections: [
+      {
+        id: "customized-questionnaires",
+        title: "Customized questionnaires",
+        body: (
+          <>
+            <p>
+              Generate custom questionnaires to ask the questions you need to
+              make data or resource sharing decisions.
+            </p>
+            <p>
+              Explore the layout and styling of questionnaires used by the DRT
+              with our{" "}
+              <a
+                href={QUESTIONNAIRE_PREVIEW_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="landing-link-inline"
+              >
+                Preview a questionnaire
+              </a>
+              . This preview displays a sample form, including one of its nested
+              collaborator sections that requestors complete during data access
+              negotiations, demonstrating how a Semantic Engine schema is
+              transformed into an interactive questionnaire form.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "run-your-own-drt",
+        title: "Run your own DRT",
+        body: (
+          <>
+            <p>
+              The DRT is an{" "}
+              <a
+                href="https://github.com/ClimateSmartAgCollab/DRT_Design_Document"
+                target="_blank"
+                rel="noreferrer"
+                className="landing-link-inline"
+              >
+                open source
+              </a>{" "}
+              project hosted on GitHub. To implement the DRT you will need to
+              run your own custom instance to host the questionnaires, templates
+              and manage ongoing communication with data requestors.
+            </p>
+            <p>
+              Contact us at{" "}
+              <a
+                href={`mailto:${DRT_DEMO_EMAIL}`}
+                className="landing-link-inline"
+              >
+                {DRT_DEMO_EMAIL}
+              </a>{" "}
+              to try a DRT Demo.
+            </p>
+          </>
+        ),
+      },
+    ],
+    quickLinks: [
+      {
+        id: "preview-questionnaire",
+        label: "Preview a questionnaire",
+        href: QUESTIONNAIRE_PREVIEW_URL,
+      },
+      {
+        id: "request-demo",
+        label: "Email a request to try the DRT Demo",
+        href: `mailto:${DRT_DEMO_EMAIL}`,
       },
     ],
     about: [{ heading: "Our Partners", copy: "" }],
@@ -138,7 +226,7 @@ const contentByLanguage: Record<Language, Content> = {
       description:
         "Questionnaires in DRT are generated from JSON schemas stored in GitHub. This allows organizations to define custom questions, branching logic, conditional fields, and validation rules. Try a live preview to see how a schema translates into an interactive questionnaire form.",
       tryButton: "Try Questionnaire Preview",
-      tryButtonHref: "https://drt-test.canadacentral.cloudapp.azure.com/preview-questionnaire",
+      tryButtonHref: QUESTIONNAIRE_PREVIEW_URL,
     },
     footer: {
       supportedBy: "Supported by",
@@ -194,12 +282,89 @@ const contentByLanguage: Record<Language, Content> = {
         ),
       },
     ],
+    landingSections: [
+      {
+        id: "questionnaires-personnalises",
+        title: "Questionnaires personnalisés",
+        body: (
+          <>
+            <p>
+              Générez des questionnaires personnalisés pour poser les questions
+              dont vous avez besoin afin de prendre des décisions sur le partage
+              de données ou de ressources.
+            </p>
+            <p>
+              Explorez la présentation et le style des questionnaires utilisés
+              par le DRT avec notre{" "}
+              <a
+                href={QUESTIONNAIRE_PREVIEW_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="landing-link-inline"
+              >
+                aperçu de questionnaire
+              </a>
+              . Cet aperçu affiche un formulaire exemple, incluant l’une de ses
+              sections imbriquées de collaborateurs que les demandeur·euse·s
+              remplissent durant les négociations d’accès aux données, montrant
+              comment un schéma du moteur sémantique est transformé en
+              questionnaire interactif.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "executer-votre-drt",
+        title: "Exécuter votre propre DRT",
+        body: (
+          <>
+            <p>
+              Le DRT est un projet{" "}
+              <a
+                href="https://github.com/ClimateSmartAgCollab/DRT_Design_Document"
+                target="_blank"
+                rel="noreferrer"
+                className="landing-link-inline"
+              >
+                open source
+              </a>{" "}
+              hébergé sur GitHub. Pour l’implémenter, vous devrez exécuter votre
+              propre instance personnalisée pour héberger les questionnaires, les
+              gabarits et gérer la communication continue avec les
+              demandeur·euse·s de données.
+            </p>
+            <p>
+              Écrivez-nous à{" "}
+              <a
+                href={`mailto:${DRT_DEMO_EMAIL}`}
+                className="landing-link-inline"
+              >
+                {DRT_DEMO_EMAIL}
+              </a>{" "}
+              afin d’essayer une démo du DRT.
+            </p>
+          </>
+        ),
+      },
+    ],
+    quickLinks: [
+      {
+        id: "preview-questionnaire-fr",
+        label: "Aperçu d’un questionnaire",
+        href: QUESTIONNAIRE_PREVIEW_URL,
+      },
+      {
+        id: "request-demo-fr",
+        label: "Envoyer un courriel pour essayer la démo DRT",
+        href: `mailto:${DRT_DEMO_EMAIL}`,
+      },
+    ],
     schemaPreview: {
       heading: "Aperçu des questionnaires générés par schéma",
       description:
         "Les questionnaires dans le DRT sont générés à partir de schémas JSON stockés dans GitHub. Cela permet aux organisations de définir des questions personnalisées, une logique de branchement, des champs conditionnels et des règles de validation. Essayez un aperçu en direct pour voir comment un schéma se traduit en formulaire de questionnaire interactif.",
       tryButton: "Essayer l'aperçu du questionnaire",
-      tryButtonHref: "https://drt-test.canadacentral.cloudapp.azure.com/preview-questionnaire",
+      tryButtonHref: QUESTIONNAIRE_PREVIEW_URL,
     },
     about: [{ heading: "Nos partenaires", copy: "" }],
     partners: [
@@ -258,6 +423,9 @@ function App() {
   const [language, setLanguage] = useState<Language>("en");
   const [activeScreenshot, setActiveScreenshot] =
     useState<ScreenshotDetails | null>(null);
+  const [expandedLanding, setExpandedLanding] = useState<Record<string, boolean>>(
+    {}
+  );
   const content = contentByLanguage[language];
   const enlargeLabelSuffix =
     language === "fr" ? "(agrandir l’aperçu)" : "(enlarge preview)";
@@ -292,6 +460,13 @@ function App() {
 
   const closeScreenshot = () => {
     setActiveScreenshot(null);
+  };
+
+  const toggleLandingSection = (id: string) => {
+    setExpandedLanding((previous) => ({
+      ...previous,
+      [id]: !previous[id],
+    }));
   };
 
   return (
@@ -330,150 +505,69 @@ function App() {
         </div>
       </header>
 
-      <section className="content-wrapper">
-        <section className="intro">
-          {content.intro.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </section>
-
-        <section className="cta-grid">
-          {content.ctas.map((cta) => (
-            <article key={cta.id} className={`cta-card cta-${cta.id}`}>
-              <h2>{cta.title}</h2>
-              <a
-                className="cta-link"
-                href={cta.linkHref}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {cta.linkLabel}
-              </a>
-              <p>{cta.body}</p>
-            </article>
-          ))}
-        </section>
-
-        <section className="questionnaire-preview">
-          <div className="questionnaire-copy">
-            <h3>{content.questionnaire.heading}</h3>
-            <p>{content.questionnaire.description}</p>
-          </div>
-          <div className="questionnaire-gallery">
-            {content.questionnaire.images.map((image) => (
-              <figure key={image.caption} className="questionnaire-figure">
+      <section className="landing-layout">
+        <div className="landing-column-main">
+          {content.landingSections.map((section, index) => {
+            const isExpanded = expandedLanding[section.id] ?? index === 0;
+            return (
+              <article key={section.id} className="landing-accordion">
                 <button
                   type="button"
-                  className="questionnaire-thumb"
-                  onClick={() => openScreenshot(image)}
-                  aria-label={`${image.caption} ${enlargeLabelSuffix}`}
+                  className="landing-accordion-toggle"
+                  onClick={() => toggleLandingSection(section.id)}
+                  aria-expanded={isExpanded}
                 >
-                  <img src={image.image} alt={image.alt} />
-                </button>
-                <figcaption>{image.caption}</figcaption>
-                {image.related && (
-                  <div className="questionnaire-related">
-                    {image.relatedHeading && (
-                      <span className="questionnaire-related-heading">
-                        {image.relatedHeading}
-                      </span>
-                    )}
-                    <div className="questionnaire-related-list">
-                      {image.related.map((relatedImage) => (
-                        <div
-                          key={relatedImage.caption}
-                          className="questionnaire-related-item"
-                        >
-                          <button
-                            type="button"
-                            className="questionnaire-thumb questionnaire-thumb-related"
-                            onClick={() => openScreenshot(relatedImage)}
-                            aria-label={`${relatedImage.caption} ${enlargeLabelSuffix}`}
-                          >
-                            <img
-                              src={relatedImage.image}
-                              alt={relatedImage.alt}
-                            />
-                          </button>
-                          <span className="questionnaire-related-caption">
-                            {relatedImage.caption}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+                  <div className="landing-accordion-header">
+                    <h2>{section.title}</h2>
+                    <span
+                      className={
+                        isExpanded
+                          ? "landing-accordion-icon landing-accordion-icon-expanded"
+                          : "landing-accordion-icon"
+                      }
+                      aria-hidden="true"
+                    >
+                      ▾
+                    </span>
                   </div>
-                )}
-              </figure>
+                </button>
+                <div
+                  className={
+                    isExpanded
+                      ? "landing-accordion-body"
+                      : "landing-accordion-body landing-accordion-body-collapsed"
+                  }
+                >
+                  {section.body}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+        <aside
+          className="quick-links-card"
+          aria-label={language === "fr" ? "Liens rapides" : "Quick links"}
+        >
+          <h2 className="quick-links-title">
+            {language === "fr" ? "Liens rapides" : "Quick Links"}
+          </h2>
+          <div className="quick-links-divider" />
+          <div className="quick-links-list">
+            {content.quickLinks.map((link) => (
+              <a
+                key={link.id}
+                href={link.href}
+                className="quick-link-button"
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={
+                  link.href.startsWith("http") ? "noreferrer" : undefined
+                }
+              >
+                {link.label}
+              </a>
             ))}
           </div>
-        </section>
-
-        <section className="schema-preview">
-          <div className="schema-preview-content">
-            <h3>{content.schemaPreview.heading}</h3>
-            <p>{content.schemaPreview.description}</p>
-            <a
-              href={content.schemaPreview.tryButtonHref}
-              target="_blank"
-              rel="noreferrer"
-              className="schema-preview-button"
-            >
-              {content.schemaPreview.tryButton}
-            </a>
-          </div>
-        </section>
-
-        <section className="about">
-          {content.about.map((item) => (
-            <div key={item.heading} className="about-block">
-              <h3>{item.heading}</h3>
-              {item.copy && <p>{item.copy}</p>}
-              <div className="partners-grid" aria-label="Partner logos">
-                {content.partners.map((partner) => (
-                  <div key={partner.name} className="partner-logo-slot">
-                    {partner.image ? (
-                      partner.href ? (
-                        <a
-                          href={partner.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="partner-logo-link"
-                        >
-                          <img
-                            src={partner.image}
-                            alt={partner.name}
-                            className="partner-logo-img"
-                          />
-                        </a>
-                      ) : (
-                        <img
-                          src={partner.image}
-                          alt={partner.name}
-                          className="partner-logo-img"
-                        />
-                      )
-                    ) : (
-                      partner.href ? (
-                        <a
-                          href={partner.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="partner-logo-placeholder"
-                        >
-                          {partner.name}
-                        </a>
-                      ) : (
-                        <span className="partner-logo-placeholder">
-                          {partner.name}
-                        </span>
-                      )
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </section>
+        </aside>
       </section>
 
       <footer className="footer-section">
