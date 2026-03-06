@@ -136,19 +136,19 @@
 }
 
 .landing-layout {
-  max-width: 1040px;
+  max-width: 1240px;
   margin: 32px auto 0;
   padding: 0 40px;
   display: grid;
-  grid-template-columns: 21rem 260px;
-  gap: 100px;
+  grid-template-columns: 25rem 340px;
+  gap: 88px;
   align-items: flex-start;
   justify-content: center;
 }
 
 .landing-column-main {
-  flex: 0 0 21rem;
-  width: min(100%, 21rem);
+  flex: 0 0 25rem;
+  width: min(100%, 25rem);
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -213,11 +213,11 @@
 }
 
 .quick-links-card {
-  flex: 0 0 260px;
+  flex: 0 0 340px;
   background-color: rgba(180, 230, 160, 0.5);
-  padding: 24px 20px 28px;
-  min-width: 240px;
-  max-width: 280px;
+  padding: 26px 24px 30px;
+  min-width: 320px;
+  max-width: 360px;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -249,10 +249,10 @@
 
 .quick-link-button {
   display: block;
-  width: 80%;
-  max-width: 240px;
+  width: 94%;
+  max-width: 320px;
   margin: 0 auto;
-  padding: 10px 14px;
+  padding: 12px 18px;
   border-radius: 12px;
   background-color: rgba(70, 160, 35, 1);
   color: #ffffff;
