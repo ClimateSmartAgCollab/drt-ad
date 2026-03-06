@@ -74,8 +74,8 @@
 
 .hero-text h1 {
   margin: 0;
-  font-size: clamp(1.1rem, 6vw, 2.1rem);
-  font-weight: 600;
+  font-size: clamp(0.98rem, 6vw, 2.1rem);
+  font-weight: 400;
   white-space: nowrap;
 }
 
@@ -155,15 +155,14 @@
 }
 
 .landing-accordion {
-  border-top: 3px solid rgba(55, 125, 28, 1);
-  padding-top: 12px;
   width: 100%;
 }
 
 .landing-accordion-toggle {
   width: 100%;
-  padding: 0;
+  padding: 0 0 12px;
   border: none;
+  border-bottom: 3px solid rgba(55, 125, 28, 1);
   background: transparent;
   cursor: pointer;
   text-align: left;
@@ -181,27 +180,29 @@
   gap: 16px;
 }
 
-.landing-accordion-header h2 {
+.landing-accordion-header h2{
   margin: 0;
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.4rem;
+  font-weight: 200;
 }
 
 .landing-accordion-icon {
-  font-size: 1.1rem;
+  font-size: 2rem;
+  font-weight: 600;
   color: rgba(55, 125, 28, 1);
+  transform: rotate(180deg);
   transition: transform 0.2s ease;
 }
 
 .landing-accordion-icon-expanded {
-  transform: rotate(180deg);
+  transform: rotate(0deg);
 }
 
 .landing-accordion-body {
   margin-top: 12px;
-  font-size: 0.98rem;
+  font-size: 1rem;
   line-height: 1.6;
-  color: #383838;
+  color: #141414;
 }
 
 .landing-accordion-body p {
@@ -234,8 +235,8 @@
 }
 
 .quick-links-divider {
-  height: 2px;
-  width: 60%;
+  height: 1px;
+  width: 100%;
   margin: 0 auto 18px;
   background-color: rgba(55, 125, 28, 1);
 }

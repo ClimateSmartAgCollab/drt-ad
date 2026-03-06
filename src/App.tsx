@@ -291,8 +291,8 @@ function App() {
 
       <section className="landing-layout">
         <div className="landing-column-main">
-          {content.landingSections.map((section, index) => {
-            const isExpanded = expandedLanding[section.id] ?? index === 0;
+          {content.landingSections.map((section) => {
+            const isExpanded = expandedLanding[section.id] ?? false;
             return (
               <article key={section.id} className="landing-accordion">
                 <button
@@ -311,7 +311,7 @@ function App() {
                       }
                       aria-hidden="true"
                     >
-                      ▾
+                      ^
                     </span>
                   </div>
                 </button>
