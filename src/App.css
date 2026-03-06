@@ -139,13 +139,16 @@
   max-width: 1040px;
   margin: 32px auto 0;
   padding: 0 40px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 21rem 260px;
   gap: 100px;
   align-items: flex-start;
+  justify-content: center;
 }
 
 .landing-column-main {
-  flex: 1;
+  flex: 0 0 21rem;
+  width: min(100%, 21rem);
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -154,6 +157,7 @@
 .landing-accordion {
   border-top: 3px solid rgba(55, 125, 28, 1);
   padding-top: 12px;
+  width: 100%;
 }
 
 .landing-accordion-toggle {
@@ -218,7 +222,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: auto;
+  margin-left: 0;
 }
 
 .quick-links-title {
@@ -713,9 +717,17 @@ a.partner-logo-placeholder:focus {
   }
 
   .landing-layout {
+    display: flex;
     flex-direction: column;
+    gap: 32px;
     padding: 24px 24px 0;
     margin-top: 24px;
+  }
+
+  .landing-column-main {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 100%;
   }
 
   .quick-links-card {
